@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 </head>
 <body class="ss-layout-bg">
     <div class="ss-overlay" id="ssOverlay"></div>
-    <button class="ss-sidebar-toggle" id="ssSidebarToggle"><i class="fa-solid fa-bars"></i></button>
     <aside class="ss-sidebar" id="ssSidebar">
         <div class="ss-logo">
             <i class="fa-solid fa-leaf ss-logo-icon"></i> <span>7es Sabbath School</span>
@@ -29,7 +28,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </nav>
     </aside>
     <div class="ss-main">
-        <?php if (isset($breadcrumbs)) echo $breadcrumbs; ?>
+        <header class="ss-header" role="banner">
+            <button class="ss-sidebar-toggle" id="ssSidebarToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="ss-header-center">
+                <?php if (isset($breadcrumbs) && $breadcrumbs) {
+                    echo $breadcrumbs;
+                } elseif (isset($title)) {
+                    echo '<span class=\"ss-header-title\">'.esc_html($title).'</span>';
+                } ?>
+            </div>
+            <div class="ss-header-actions"></div>
+        </header>
         <main class="ss-main-content">
             <?php if (isset($content)) echo $content; ?>
         </main>

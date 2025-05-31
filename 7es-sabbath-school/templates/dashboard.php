@@ -39,20 +39,22 @@ $cards = [
 $breadcrumbs = '';
 
 // Calendar dummy (puedes reemplazar por integración real luego)
-$calendar = '<div class="ss-calendar-block"><h3 style="margin-top:0;font-size:1.1em;color:#2d72d9;font-weight:600;"><i class="fa-solid fa-calendar"></i> Calendario de Actividades</h3><div style="color:#888;font-size:1em;">[Aquí irá el calendario de actividades]</div></div>';
+$calendar = '<div class="ss-dashboard-calendar-block"><span class="ss-dashboard-calendar-placeholder">📅 Calendario de Actividades<br><small>(Aquí irá el calendario de actividades)</small></span></div>';
 
 ob_start();
 ?>
-<div class="ss-cards-row">
-    <?php foreach($cards as $c): ?>
-        <div class="ss-card <?php echo $c['color']; ?>">
-            <span class="ss-card-icon"><i class="fa-solid <?php echo $c['icon']; ?>"></i></span>
-            <span class="ss-card-title"><?php echo $c['title']; ?></span>
-            <span class="ss-card-value"><?php echo $c['value']; ?></span>
-        </div>
-    <?php endforeach; ?>
-</div>
-<?php echo $calendar; ?>
+<main class="ss-main-content">
+    <div class="ss-dashboard-cards-wrapper">
+        <?php foreach($cards as $c): ?>
+            <div class="ss-dashboard-card ss-dashboard-card-<?php echo strtolower($c['title']); ?>">
+                <i class="fa-solid <?php echo $c['icon']; ?> ss-dashboard-card-icon"></i>
+                <div class="ss-dashboard-card-label"><?php echo $c['title']; ?></div>
+                <div class="ss-dashboard-card-value"><?php echo $c['value']; ?></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php echo $calendar; ?>
+</main>
 <?php
 $content = ob_get_clean();
 $title = 'Dashboard | 7es Sabbath School';

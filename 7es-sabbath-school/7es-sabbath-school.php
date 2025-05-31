@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: 7es Sabbath School
-Description: Gestión de clases, miembros y reportes para Escuela Sabática/Unidades Misioneras. Mobile-first, arquitectura centralizada y auditoría total.
+Description: Gestión de clases, miembros y reportes para Escuela Sabática/Unidades Misioneras.
 Version: 0.1.0
-Author: Equipo Windsurf
+Author: Equipo Javier Córdoba - Windsurf - ChatGPT
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Seguridad: no acceso directo
