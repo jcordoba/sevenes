@@ -15,6 +15,13 @@ class SabbathSchool_Install {
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         $charset_collate = $wpdb->get_charset_collate();
         $prefix = $wpdb->prefix;
+
+        // Registrar capacidades personalizadas para el sistema
+        $role = get_role('administrator');
+        if ($role) {
+            $role->add_cap('manage_sabbath_members');
+            $role->add_cap('manage_sabbath_classes');
+        }
         
         // Tabla de miembros
         $sql_members = "CREATE TABLE {$prefix}sapp_members (
