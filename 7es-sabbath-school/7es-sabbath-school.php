@@ -87,8 +87,7 @@ add_filter('template_include', function($template){
         case 'members':
             include SABBATH_SCHOOL_PLUGIN_PATH.'templates/members.php'; exit;
         case 'classes':
-            // Placeholder: future implementation
-            echo '<h1>Clases/Unidades (en desarrollo)</h1>'; exit;
+            include SABBATH_SCHOOL_PLUGIN_PATH.'templates/classes.php'; exit;
     }
     return $template;
 });
