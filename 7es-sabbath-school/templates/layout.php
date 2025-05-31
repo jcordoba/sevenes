@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <?php if (isset($extra_css)) echo $extra_css; ?>
 </head>
 <body class="ss-layout-bg">
+    <div class="ss-overlay" id="ssOverlay"></div>
+    <button class="ss-sidebar-toggle" id="ssSidebarToggle"><i class="fa-solid fa-bars"></i></button>
     <aside class="ss-sidebar" id="ssSidebar">
         <div class="ss-logo">
             <i class="fa-solid fa-leaf ss-logo-icon"></i> <span>7es Sabbath School</span>
@@ -25,7 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <a href="<?php echo home_url('/sevenes-dashboard/reports/'); ?>" class="ss-nav-link<?php if($active==='reports') echo ' active'; ?>"><i class="fa-solid fa-chart-pie"></i> Reportes</a>
             <a href="<?php echo home_url('/sevenes-logout/'); ?>" class="ss-nav-link"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
         </nav>
-        <button class="ss-sidebar-toggle" id="ssSidebarToggle"><i class="fa-solid fa-bars"></i></button>
     </aside>
     <div class="ss-main">
         <?php if (isset($breadcrumbs)) echo $breadcrumbs; ?>
@@ -34,10 +35,34 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </main>
     </div>
     <script>
-    // Mobile sidebar toggle
-    document.getElementById('ssSidebarToggle').onclick = function() {
-      document.getElementById('ssSidebar').classList.toggle('open');
-    };
+    // Mobile sidebar toggle + overlay global
+    (function() {
+      var sidebar = document.getElementById('ssSidebar');
+      var overlay = document.getElementById('ssOverlay');
+      var toggle = document.getElementById('ssSidebarToggle');
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.remove('hide');
+        overlay.style.display = 'block';
+        document.body.classList.add('ss-menu-open');
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.add('hide');
+        setTimeout(function(){ overlay.style.display = 'none'; }, 180);
+        document.body.classList.remove('ss-menu-open');
+      }
+      toggle.onclick = function(e) {
+        if (!sidebar.classList.contains('open')) openSidebar();
+        else closeSidebar();
+      };
+      overlay.onclick = function(e) { closeSidebar(); };
+      window.addEventListener('resize', function() {
+        if(window.innerWidth > 700) {
+          closeSidebar();
+        }
+      });
+    })();
     </script>
 </body>
 </html>

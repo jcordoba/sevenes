@@ -37,7 +37,46 @@ body.ss-layout-bg {
   background: var(--ss-blue); color: #fff;
 }
 .ss-sidebar-toggle {
-  display: none; background: none; border: none; color: var(--ss-blue); font-size: 1.4em; margin: 1em auto 0.7em auto; cursor: pointer;
+  display: none;
+  background: #fff;
+  border: none;
+  color: var(--ss-blue);
+  font-size: 2.2em;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #0001;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2002;
+  transition: box-shadow 0.15s;
+}
+
+@media (max-width: 700px) {
+  .ss-sidebar-toggle {
+    display: flex !important;
+    margin: 0;
+  }
+  .ss-main {
+    position: relative;
+  }
+}
+
+@media (min-width: 701px) {
+  .ss-sidebar-toggle {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .ss-sidebar-toggle {
+    display: flex !important;
+  }
 }
 .ss-main {
   margin-left: 220px; min-height: 100vh; background: var(--ss-bg);
