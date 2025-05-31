@@ -24,4 +24,29 @@ register_activation_hook(__FILE__, ['SabbathSchool_Install', 'activate']);
 // (Opcional) Actualización futura
 add_action('plugins_loaded', ['SabbathSchool_Install', 'maybe_update']);
 
+// Shortcode para vista de miembros
+add_shortcode('ss_members', function(){
+    ob_start();
+    include SABBATH_SCHOOL_PLUGIN_PATH . 'templates/members-list.php';
+    return ob_get_clean();
+});
+
+// AJAX: formulario de alta/edición (modal)
+add_action('wp_ajax_sabbathschool_member_form', function(){
+    $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+    $member = $id ? SabbathSchool_Members::get($id) : null;
+    include SABBATH_SCHOOL_PLUGIN_PATH . 'templates/member-form.php';
+    exit;
+});
+
+// Carga condicional de assets para miembros
+add_action('wp_enqueue_scripts', function(){
+    if(!is_singular() && !is_page()) return;
+    global $post;
+    if(isset($post->post_content) && strpos($post->post_content,'[ss_members')!==false){
+        wp_enqueue_style('ss-members', SABBATH_SCHOOL_PLUGIN_URL.'assets/css/members.css',[], '1.0');
+        wp_enqueue_script('ss-members', SABBATH_SCHOOL_PLUGIN_URL.'assets/js/members.js',['jquery'], '1.0', true);
+        wp_localize_script('ss-members','ssMembers',[ 'nonce'=> wp_create_nonce('sabbathschool_member') ]);
+    }
+});
 // (Aquí se cargarán hooks, shortcodes, endpoints, etc.)

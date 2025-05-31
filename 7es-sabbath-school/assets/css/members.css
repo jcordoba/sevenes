@@ -1,0 +1,22 @@
+/* Mobile-first: una sola columna, botones grandes, sin scroll horizontal */
+.ss-members-wrapper { max-width: 480px; margin: 0 auto; padding: 1em; }
+.ss-form { display: flex; flex-direction: column; gap: 1em; }
+.ss-form-inline { flex-direction: row; gap: 0.5em; }
+.ss-form-group { display: flex; flex-direction: column; }
+.ss-form-group label { font-weight: 600; margin-bottom: 0.25em; }
+.ss-form input, .ss-form select, .ss-form button { font-size: 1em; padding: 0.7em; border-radius: 6px; border: 1px solid #ccc; }
+.ss-btn { cursor: pointer; border: none; border-radius: 6px; padding: 0.7em 1.2em; font-size: 1em; }
+.ss-btn-primary { background: #2d72d9; color: #fff; }
+.ss-btn-success { background: #27ae60; color: #fff; }
+.ss-btn-cancel { background: #aaa; color: #fff; }
+.ss-feedback { margin: 0.5em 0; min-height: 1.5em; font-weight: 600; }
+.ss-members-list { margin-top: 1em; display: flex; flex-direction: column; gap: 0.7em; }
+.ss-member-card { background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 6px #0001; padding: 1em; display: flex; flex-direction: column; gap: 0.5em; }
+.ss-member-card .ss-card-actions { display: flex; gap: 0.5em; margin-top: 0.5em; }
+@media (min-width: 700px) {
+  .ss-members-wrapper { max-width: 800px; }
+  .ss-members-list { flex-direction: row; flex-wrap: wrap; gap: 1em; }
+  .ss-member-card { flex: 1 1 300px; min-width: 300px; max-width: 360px; }
+}
+.ss-modal { position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; z-index:9999; }
+.ss-modal .ss-form { background:#fff; padding:2em; border-radius:10px; box-shadow:0 4px 16px #0002; min-width:300px; max-width:95vw; }
