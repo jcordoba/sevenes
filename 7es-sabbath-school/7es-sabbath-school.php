@@ -49,4 +49,49 @@ add_action('wp_enqueue_scripts', function(){
         wp_localize_script('ss-members','ssMembers',[ 'nonce'=> wp_create_nonce('sabbathschool_member') ]);
     }
 });
+// --- SISTEMA DE RUTAS CUSTOM SEVENES ---
+
+// 1. Añadir rewrite rules al activar/desactivar
+register_activation_hook(__FILE__, function(){
+    SabbathSchool_Install::activate();
+    add_sevenes_rewrite_rules();
+    flush_rewrite_rules();
+});
+register_deactivation_hook(__FILE__, function(){
+    flush_rewrite_rules();
+});
+function add_sevenes_rewrite_rules() {
+    add_rewrite_rule('^sevenes-login/?$', 'index.php?sevenes_route=login', 'top');
+    add_rewrite_rule('^sevenes-logout/?$', 'index.php?sevenes_route=logout', 'top');
+    add_rewrite_rule('^sevenes-dashboard/?$', 'index.php?sevenes_route=dashboard', 'top');
+    add_rewrite_rule('^sevenes-dashboard/members/?$', 'index.php?sevenes_route=members', 'top');
+    add_rewrite_rule('^sevenes-dashboard/classes/?$', 'index.php?sevenes_route=classes', 'top');
+}
+add_action('init', 'add_sevenes_rewrite_rules');
+
+// 2. Añadir query var custom
+add_filter('query_vars', function($vars){ $vars[] = 'sevenes_route'; return $vars; });
+
+// 3. Interceptar template para rutas custom
+add_filter('template_include', function($template){
+    $route = get_query_var('sevenes_route');
+    if(!$route) return $template;
+    switch($route) {
+        case 'login':
+            include SABBATH_SCHOOL_PLUGIN_PATH.'templates/login.php'; exit;
+        case 'logout':
+            wp_logout();
+            wp_safe_redirect( home_url('/sevenes-login/') ); exit;
+        case 'dashboard':
+            include SABBATH_SCHOOL_PLUGIN_PATH.'templates/dashboard.php'; exit;
+        case 'members':
+            include SABBATH_SCHOOL_PLUGIN_PATH.'templates/members.php'; exit;
+        case 'classes':
+            // Placeholder: future implementation
+            echo '<h1>Clases/Unidades (en desarrollo)</h1>'; exit;
+    }
+    return $template;
+});
+
+// --- FIN SISTEMA DE RUTAS CUSTOM ---
 // (Aquí se cargarán hooks, shortcodes, endpoints, etc.)

@@ -1,0 +1,9 @@
+body { background: #f7fafd; min-height: 100vh; }
+.ss-dashboard-wrapper { max-width: 900px; margin: 2vh auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 24px #0001; padding: 2.5em 2em 2em; }
+header { display: flex; flex-direction: column; gap: 0.5em; margin-bottom: 1.5em; }
+header h1 { font-size: 1.5em; color: #2d72d9; }
+nav { font-size: 1.1em; }
+nav a { color: #2d72d9; text-decoration: none; margin-right: 1em; }
+nav a:hover { text-decoration: underline; }
+.ss-feedback-error { color: #c0392b; margin: 1em 0; font-weight: 600; }
+main { margin-top: 1em; }
