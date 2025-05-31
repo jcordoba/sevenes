@@ -1,3 +1,4 @@
+// dashboard.php
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! is_user_logged_in() ) {
@@ -5,28 +6,55 @@ if ( ! is_user_logged_in() ) {
     exit;
 }
 $user = wp_get_current_user();
-?><!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dashboard | 7es Sabbath School</title>
-    <link rel="stylesheet" href="<?php echo SABBATH_SCHOOL_PLUGIN_URL.'assets/css/dashboard.css'; ?>">
-</head>
-<body>
-    <div class="ss-dashboard-wrapper">
-        <header>
-            <h1>Bienvenido, <?php echo esc_html($user->display_name); ?></h1>
-            <nav>
-                <a href="<?php echo home_url('/sevenes-dashboard/members/'); ?>">Miembros</a> |
-                <a href="<?php echo home_url('/sevenes-dashboard/classes/'); ?>">Clases</a> |
-                <a href="<?php echo home_url('/sevenes-logout/'); ?>">Salir</a>
-            </nav>
-        </header>
-        <main>
-            <h2>Panel principal</h2>
-            <p>Usa el menú para navegar por los módulos.</p>
-        </main>
-    </div>
-</body>
-</html>
+
+// Dummy data para cards (reemplazar por queries reales luego)
+$cards = [
+    [
+        'icon' => 'fa-users',
+        'color' => 'ss-blue',
+        'title' => 'Miembros',
+        'value' => '27+',
+    ],
+    [
+        'icon' => 'fa-chalkboard-user',
+        'color' => 'ss-green',
+        'title' => 'Clases',
+        'value' => '7',
+    ],
+    [
+        'icon' => 'fa-calendar-check',
+        'color' => 'ss-orange',
+        'title' => 'Asistencia',
+        'value' => '98%',
+    ],
+    [
+        'icon' => 'fa-chart-pie',
+        'color' => 'ss-red',
+        'title' => 'Reportes',
+        'value' => '15',
+    ],
+];
+
+// Breadcrumbs no necesarios en dashboard
+$breadcrumbs = '';
+
+// Calendar dummy (puedes reemplazar por integración real luego)
+$calendar = '<div class="ss-calendar-block"><h3 style="margin-top:0;font-size:1.1em;color:#2d72d9;font-weight:600;"><i class="fa-solid fa-calendar"></i> Calendario de Actividades</h3><div style="color:#888;font-size:1em;">[Aquí irá el calendario de actividades]</div></div>';
+
+ob_start();
+?>
+<div class="ss-cards-row">
+    <?php foreach($cards as $c): ?>
+        <div class="ss-card <?php echo $c['color']; ?>">
+            <span class="ss-card-icon"><i class="fa-solid <?php echo $c['icon']; ?>"></i></span>
+            <span class="ss-card-title"><?php echo $c['title']; ?></span>
+            <span class="ss-card-value"><?php echo $c['value']; ?></span>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php echo $calendar; ?>
+<?php
+$content = ob_get_clean();
+$title = 'Dashboard | 7es Sabbath School';
+$active = 'dashboard';
+include SABBATH_SCHOOL_PLUGIN_PATH.'templates/layout.php';

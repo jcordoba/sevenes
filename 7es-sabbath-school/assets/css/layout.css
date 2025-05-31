@@ -1,0 +1,120 @@
+/* layout.css */
+:root {
+  --ss-blue: #2d72d9;
+  --ss-green: #27ae60;
+  --ss-orange: #ffa726;
+  --ss-red: #c0392b;
+  --ss-bg: #f7fafd;
+  --ss-sidebar: #fff;
+  --ss-sidebar-border: #e3e7ef;
+  --ss-card-shadow: 0 2px 8px #0001;
+  --ss-font: 'Roboto', 'Open Sans', 'Segoe UI', Arial, sans-serif;
+}
+body.ss-layout-bg {
+  background: var(--ss-bg);
+  font-family: var(--ss-font);
+  margin: 0;
+}
+.ss-sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0; width: 220px;
+  background: var(--ss-sidebar);
+  border-right: 1px solid var(--ss-sidebar-border);
+  box-shadow: 2px 0 8px #0001;
+  z-index: 1001;
+  display: flex; flex-direction: column;
+  transition: left 0.2s;
+}
+.ss-logo {
+  font-size: 1.3em; font-weight: 700; color: var(--ss-blue); padding: 1.2em 1em 1em 1em; display: flex; align-items: center; gap: 0.5em;
+}
+.ss-logo-icon { color: var(--ss-green); font-size: 1.4em; }
+.ss-nav { display: flex; flex-direction: column; gap: 0.3em; padding: 0 1em; }
+.ss-nav-link {
+  color: #444; text-decoration: none; padding: 0.7em 0.9em; border-radius: 6px; font-size: 1.07em; display: flex; align-items: center; gap: 0.7em;
+  transition: background 0.13s, color 0.13s;
+}
+.ss-nav-link.active, .ss-nav-link:hover {
+  background: var(--ss-blue); color: #fff;
+}
+.ss-sidebar-toggle {
+  display: none; background: none; border: none; color: var(--ss-blue); font-size: 1.4em; margin: 1em auto 0.7em auto; cursor: pointer;
+}
+.ss-main {
+  margin-left: 220px; min-height: 100vh; background: var(--ss-bg);
+  display: flex; flex-direction: column;
+}
+.ss-main-content { padding: 2.2em 2em 2em 2em; }
+
+@media (max-width: 900px) {
+  .ss-main-content { padding: 1.2em 0.4em 1em 0.4em; }
+  .ss-sidebar { width: 180px; }
+  .ss-main { margin-left: 180px; }
+}
+@media (max-width: 700px) {
+  .ss-sidebar {
+    left: -220px; width: 220px; box-shadow: 2px 0 16px #0002;
+    transition: left 0.2s;
+    z-index: 1201;
+  }
+  .ss-sidebar.open { left: 0; }
+  .ss-sidebar-toggle { display: block; z-index: 1301; }
+  .ss-main { margin-left: 0; }
+  .ss-main-content {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .ss-cards-row, .ss-classes-wrapper, .ss-form, .ss-members-list, .ss-calendar-block {
+    padding-left: 2px; padding-right: 2px;
+  }
+  body.ss-menu-open { overflow: hidden; }
+  .ss-overlay {
+    display: block;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30,40,60,0.38);
+    z-index: 1200;
+    transition: opacity 0.18s;
+    opacity: 1;
+  }
+  .ss-overlay.hide { opacity: 0; pointer-events: none; }
+}
+
+.ss-overlay {
+  display: none;
+}
+
+/* Cards de resumen */
+.ss-cards-row {
+  display: flex; gap: 1.2em; flex-wrap: wrap; margin-bottom: 2em;
+}
+.ss-card {
+  flex: 1 1 180px; min-width: 170px; max-width: 260px;
+  background: #fff; border-radius: 10px; box-shadow: var(--ss-card-shadow);
+  padding: 1.3em 1.2em 1.1em 1.2em; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5em;
+}
+.ss-card .ss-card-icon { font-size: 2.2em; opacity: 0.8; }
+.ss-card.ss-blue { border-left: 7px solid var(--ss-blue); }
+.ss-card.ss-green { border-left: 7px solid var(--ss-green); }
+.ss-card.ss-orange { border-left: 7px solid var(--ss-orange); }
+.ss-card.ss-red { border-left: 7px solid var(--ss-red); }
+.ss-card-title { font-size: 1.08em; color: #666; font-weight: 500; }
+.ss-card-value { font-size: 2em; font-weight: 700; color: #222; }
+
+/* Calendario */
+.ss-calendar-block {
+  background: #fff; border-radius: 10px; box-shadow: var(--ss-card-shadow);
+  padding: 1.4em 1.2em 1.1em 1.2em; margin-top: 1em;
+}
+
+/* Breadcrumbs */
+.ss-breadcrumbs {
+  font-size: 1em; color: #888; margin: 1.2em 0 0.7em 0; display: flex; align-items: center; gap: 0.5em;
+}
+.ss-breadcrumbs a { color: var(--ss-blue); text-decoration: none; }
+.ss-breadcrumbs span { color: #888; }
+
+.ss-btn {
+  display: inline-block; border: none; border-radius: 6px; padding: 0.7em 1.3em; font-size: 1em; font-family: var(--ss-font); cursor: pointer;
+}
+.ss-btn-primary { background: var(--ss-blue); color: #fff; }
+.ss-btn-success { background: var(--ss-green); color: #fff; }
+.ss-btn-cancel { background: #aaa; color: #fff; }
