@@ -1,4 +1,3 @@
-// layout.php
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?><!DOCTYPE html>
@@ -9,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <title><?php echo isset($title) ? esc_html($title) : '7es Sabbath School'; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo SABBATH_SCHOOL_PLUGIN_URL.'assets/css/layout.css'; ?>">
     <?php if (isset($extra_css)) echo $extra_css; ?>
+    <?php wp_head(); ?>
 </head>
 <body class="ss-layout-bg">
     <div class="ss-overlay" id="ssOverlay"></div>
@@ -75,5 +74,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
       });
     })();
     </script>
+    <?php wp_footer(); ?>
 </body>
 </html>

@@ -1,4 +1,3 @@
-// dashboard.php
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! is_user_logged_in() ) {
@@ -44,15 +43,28 @@ $calendar = '<div class="ss-dashboard-calendar-block"><span class="ss-dashboard-
 ob_start();
 ?>
 <main class="ss-main-content">
-    <div class="ss-dashboard-cards-wrapper">
-        <?php foreach($cards as $c): ?>
-            <div class="ss-dashboard-card ss-dashboard-card-<?php echo strtolower($c['title']); ?>">
-                <i class="fa-solid <?php echo $c['icon']; ?> ss-dashboard-card-icon"></i>
-                <div class="ss-dashboard-card-label"><?php echo $c['title']; ?></div>
-                <div class="ss-dashboard-card-value"><?php echo $c['value']; ?></div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+    <div class="ss-cards-row">
+  <div class="ss-card ss-blue">
+    <div class="ss-card-icon"><i class="fa-solid fa-users"></i></div>
+    <div class="ss-card-title">Miembros</div>
+    <div class="ss-card-value">27+</div>
+  </div>
+  <div class="ss-card ss-green">
+    <div class="ss-card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+    <div class="ss-card-title">Clases</div>
+    <div class="ss-card-value">7</div>
+  </div>
+  <div class="ss-card ss-orange">
+    <div class="ss-card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+    <div class="ss-card-title">Asistencia</div>
+    <div class="ss-card-value">98%</div>
+  </div>
+  <div class="ss-card ss-red">
+    <div class="ss-card-icon"><i class="fa-solid fa-chart-pie"></i></div>
+    <div class="ss-card-title">Reportes</div>
+    <div class="ss-card-value">15</div>
+  </div>
+</div>
     <?php echo $calendar; ?>
 </main>
 <?php

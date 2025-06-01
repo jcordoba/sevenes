@@ -49,6 +49,65 @@ add_action('wp_enqueue_scripts', function(){
         wp_localize_script('ss-members','ssMembers',[ 'nonce'=> wp_create_nonce('sabbathschool_member') ]);
     }
 });
+// Carga de assets para las rutas personalizadas de Sevenes
+function sevenes_enqueue_dashboard_assets() {
+    $sevenes_route = get_query_var('sevenes_route');
+
+    // Definir las rutas que usan el layout.css principal
+    // Estas deben coincidir con los 'case' en el filtro 'template_include' que cargan plantillas usando el layout general
+    $dashboard_routes = ['dashboard', 'members', 'classes']; 
+
+    if ($sevenes_route && in_array($sevenes_route, $dashboard_routes)) {
+        $layout_css_path = SABBATH_SCHOOL_PLUGIN_PATH . 'assets/css/layout.css';
+        $layout_css_url = SABBATH_SCHOOL_PLUGIN_URL . 'assets/css/layout.css';
+        
+        if (file_exists($layout_css_path)) {
+            wp_enqueue_style(
+                'ss-main-layout', // Handle único para el layout principal
+                $layout_css_url,
+                [], // Dependencias
+                filemtime($layout_css_path) // Versión basada en la fecha de modificación del archivo
+            );
+        }
+
+        // Aquí podrías encolar también un JS global para el dashboard si fuera necesario
+        // Ejemplo:
+        // $layout_js_path = SABBATH_SCHOOL_PLUGIN_PATH . 'assets/js/layout.js';
+        // $layout_js_url = SABBATH_SCHOOL_PLUGIN_URL . 'assets/js/layout.js';
+        // if (file_exists($layout_js_path)) {
+        //     wp_enqueue_script(
+        //         'ss-main-layout-js',
+        //         $layout_js_url,
+        //         ['jquery'], // Dependencias, ej. jQuery
+        //         filemtime($layout_js_path),
+        //         true // Cargar en el footer
+        //     );
+        // }
+    }
+    
+    // Ejemplo para login.css (si decides moverlo aquí también)
+    // if ($sevenes_route === 'login') {
+    //     $login_css_path = SABBATH_SCHOOL_PLUGIN_PATH . 'assets/css/login.css';
+    //     $login_css_url = SABBATH_SCHOOL_PLUGIN_URL . 'assets/css/login.css';
+    //     if (file_exists($login_css_path)) {
+    //         wp_enqueue_style('ss-login-style', $login_css_url, [], filemtime($login_css_path));
+    //     }
+    // }
+}
+add_action('wp_enqueue_scripts', 'sevenes_enqueue_dashboard_assets');
+
+// Ocultar la barra de administración en las páginas del dashboard personalizado
+function sevenes_hide_admin_bar_on_dashboard($show) {
+    $sevenes_route = get_query_var('sevenes_route');
+    $dashboard_routes = ['dashboard', 'members', 'classes', 'attendance', 'reports']; // Asegúrate de incluir todas las rutas de tu dashboard
+
+    if ($sevenes_route && in_array($sevenes_route, $dashboard_routes)) {
+        return false; // Oculta la barra de administración
+    }
+    return $show; // Muestra la barra en otros lugares
+}
+add_filter('show_admin_bar', 'sevenes_hide_admin_bar_on_dashboard');
+
 // --- SISTEMA DE RUTAS CUSTOM SEVENES ---
 
 // 1. Añadir rewrite rules al activar/desactivar
