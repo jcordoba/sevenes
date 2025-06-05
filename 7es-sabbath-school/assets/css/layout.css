@@ -17,11 +17,13 @@ body.ss-layout-bg {
   margin: 0;
 }
 
-/* SIDEBAR */
+/* --- BASE STYLES (Mobile-First) --- */
+
+/* SIDEBAR (Mobile) */
 .ss-sidebar {
   position: fixed;
   top: 0;
-  left: -100vw;
+  left: -100vw; /* Hidden off-screen for mobile */
   width: 80vw;
   max-width: 320px;
   height: 100vh;
@@ -36,20 +38,21 @@ body.ss-layout-bg {
 
 .ss-sidebar.open {
   left: 0;
-  z-index: 1302;
 }
 
 .ss-overlay {
-  display: none;
-}
-
-body.ss-menu-open .ss-overlay {
-  display: block;
+  display: none; /* Hidden by default, shown when mobile menu is open */
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(30,40,60,0.38);
   z-index: 1300;
   transition: opacity 0.18s;
+  opacity: 0; /* Start transparent */
+  pointer-events: none; /* Start non-interactive */
+}
+
+body.ss-menu-open .ss-overlay {
+  display: block;
   opacity: 1;
   pointer-events: auto;
 }
@@ -88,24 +91,23 @@ body.ss-menu-open .ss-overlay {
   transition: background 0.13s, color 0.13s;
 }
 
-.ss-nav-link.active, .ss-nav-link:hover {
+.ss-nav-link.active,
+.ss-nav-link:hover {
   background: var(--ss-blue);
   color: #fff;
 }
 
-/* HEADER */
+/* HEADER (Mobile & Base) */
 .ss-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 56px;
-  width: 100vw;
-  min-width: 0;
-  max-width: 100vw;
-  padding: 0 20px;
+  width: 100%; /* Changed from 100vw to prevent potential overflow issues */
+  padding: 0 10px; /* Adjusted padding for mobile */
   background: #fff;
   box-shadow: 0 4px 16px #0002, 0 1.5px 0 #e3e7ef;
-  z-index: 2002;
+  z-index: 1000; /* Lowered z-index slightly, ensure sidebar is above */
   position: sticky;
   top: 0;
   left: 0;
@@ -119,12 +121,10 @@ body.ss-menu-open .ss-overlay {
   justify-content: center;
   min-width: 0;
   overflow: hidden;
-  position: relative;
-  z-index: 1;
 }
 
 .ss-header-title {
-  font-size: 1.18em;
+  font-size: 1.1em; /* Slightly adjusted */
   font-weight: 600;
   color: var(--ss-blue);
   white-space: nowrap;
@@ -133,176 +133,91 @@ body.ss-menu-open .ss-overlay {
 }
 
 .ss-header-actions {
-  width: 48px;
-  height: 48px;
+  width: 48px; /* Ensure enough space if actions are added */
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
 .ss-sidebar-toggle {
-  display: none;
-  background: #fff;
+  display: flex; /* Visible on mobile */
+  background: transparent; /* Cleaner look */
   border: none;
   color: var(--ss-blue);
-  font-size: 2.1em;
+  font-size: 1.8em; /* Adjusted size */
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px #0001;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-right: 8px;
-  margin-left: -6px;
-  transition: box-shadow 0.15s;
-  position: static;
-  padding: 0;
+  padding:0;
+  z-index: 1301; /* Above header content, below sidebar */
 }
 
-/* MAIN CONTENT */
+/* MAIN CONTENT (Mobile & Base) */
 .ss-main {
-  margin-left: 220px;
+  margin-left: 0; /* Full width on mobile */
   min-height: 100vh;
   background: var(--ss-bg);
   display: flex;
   flex-direction: column;
+  padding-top: 56px; /* Account for sticky header height */
 }
 
 .ss-main-content {
-  margin-top: 56px;
-  padding: 0 0 36px 0;
-  transition: margin-top 0.2s;
+  flex: 1;
+  padding: 1em 0.5em; /* Mobile padding */
 }
 
-/* DASHBOARD CARDS - MOBILE FIRST Y SIDEBAR */
-
+/* CARDS (Mobile & Base) */
 .ss-cards-row {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center cards in column layout */
   gap: 14px;
-  margin-top: 0;
   margin-bottom: 18px;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .ss-card {
-  width: 97vw;
-  max-width: 99vw;
-  min-width: 0;
+  width: 95%; /* Slightly less than full viewport width */
+  max-width: 400px; /* Max width for single cards on mobile */
   margin: 0 auto 14px auto;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #0002;
-  padding: 20px 8px 16px 8px;
-  flex-basis: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-
-
-
-
-.ss-overlay {
-  display: none;
-}
-
-
-
-.ss-sidebar-toggle {
-  display: flex;
-  z-index: 1301;
-}
-
-.ss-main {
-  margin-left: 0;
-}
-
-@media (min-width: 701px) {
-  .ss-cards-row {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 24px;
-    margin-top: 16px;
-    margin-bottom: 36px;
-    justify-content: center;
-  }
-  .ss-card {
-    min-width: 220px;
-    max-width: 260px;
-    width: auto;
-    margin-bottom: 0.6em;
-    padding: 28px 18px 22px 18px;
-    border-radius: 14px;
-  }
-}
-
-
-  .ss-sidebar {
-    left: 0;
-    width: 220px;
-    max-width: 220px;
-    height: 100vh;
-    position: fixed;
-  }
-}
-
-.ss-card {
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 2px 12px #0002;
-  min-width: 220px;
-  max-width: 260px;
-  flex: 1 1 220px;
-  padding: 28px 18px 22px 18px;
+  padding: 20px 15px 16px 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-left: 7px solid var(--ss-blue);
+  border-left: 7px solid var(--ss-blue); /* Default border color */
   transition: box-shadow 0.15s, transform 0.15s;
 }
 
-.ss-card.ss-blue {
-  border-left: 7px solid var(--ss-blue);
-}
-
-.ss-card.ss-green {
-  border-left: 7px solid var(--ss-green);
-}
-
-.ss-card.ss-orange {
-  border-left: 7px solid var(--ss-orange);
-}
-
-.ss-card.ss-red {
-  border-left: 7px solid var(--ss-red);
-}
+.ss-card.ss-blue { border-left-color: var(--ss-blue); }
+.ss-card.ss-green { border-left-color: var(--ss-green); }
+.ss-card.ss-orange { border-left-color: var(--ss-orange); }
+.ss-card.ss-red { border-left-color: var(--ss-red); }
 
 .ss-card-title {
-  font-size: 1.09em;
+  font-size: 1.0em;
   color: #666;
   font-weight: 500;
   margin-bottom: 2px;
 }
 
 .ss-card-value {
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: 700;
   color: #222;
 }
 
 .ss-card .ss-card-icon {
-  font-size: 2.2em;
+  font-size: 2.0em;
   opacity: 0.8;
   margin-bottom: 4px;
 }
 
-/* CALENDARIO */
+/* OTHER BASE COMPONENTS */
 .ss-calendar-block {
   background: #fff;
   border-radius: 10px;
@@ -311,14 +226,14 @@ body.ss-menu-open .ss-overlay {
   margin-top: 1em;
 }
 
-/* BREADCRUMBS */
 .ss-breadcrumbs {
-  font-size: 1em;
-  color: #888;
-  margin: 1.2em 0 0.7em 0;
+  font-size: 0.9em;
+  color: #777;
+  margin: 0 0 1em 0; /* Adjusted margin */
   display: flex;
   align-items: center;
   gap: 0.5em;
+  padding: 0 0.5em; /* Padding for breadcrumbs on mobile */
 }
 
 .ss-breadcrumbs a {
@@ -327,10 +242,9 @@ body.ss-menu-open .ss-overlay {
 }
 
 .ss-breadcrumbs span {
-  color: #888;
+  color: #777;
 }
 
-/* BOTONES */
 .ss-btn {
   display: inline-block;
   border: none;
@@ -339,243 +253,157 @@ body.ss-menu-open .ss-overlay {
   font-size: 1em;
   font-family: var(--ss-font);
   cursor: pointer;
+  text-decoration: none; /* For anchor tags styled as buttons */
+  text-align: center;
 }
 
-.ss-btn-primary {
-  background: var(--ss-blue);
-  color: #fff;
-}
+.ss-btn-primary { background: var(--ss-blue); color: #fff; }
+.ss-btn-success { background: var(--ss-green); color: #fff; }
+.ss-btn-cancel { background: #aaa; color: #fff; }
 
-.ss-btn-success {
-  background: var(--ss-green);
-  color: #fff;
-}
-
-.ss-btn-cancel {
-  background: #aaa;
-  color: #fff;
-}
-
-/* OVERLAY MENÚ MOBILE */
-.ss-overlay {
-  display: none;
-}
-
-/* MEDIA QUERIES */
-@media (max-width: 900px) {
+/* --- TABLET STYLES --- */
+@media (min-width: 701px) {
   .ss-main-content {
-    padding: 1.2em 0.4em 1em 0.4em;
+    padding: 1.5em 1em; /* Tablet padding */
   }
-  
-  .ss-sidebar {
-    width: 180px;
-  }
-  
-  .ss-main {
-    margin-left: 180px;
-  }
-}
 
+  .ss-cards-row {
+    flex-direction: row; /* Cards in a row */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center cards in the row */
+    gap: 20px; /* Gap between cards */
   }
+
   .ss-card {
+    width: auto; /* Let flex properties control width */
     min-width: 220px;
-    max-width: 260px;
-    width: auto;
-    margin-bottom: 0.6em;
-    padding: 28px 18px 22px 18px;
-    border-radius: 14px;
+    max-width: 280px; /* Max width for cards on tablet */
+    flex: 1 1 220px; /* Allow shrinking and growing */
+    margin-bottom: 20px; /* Consistent bottom margin */
+    padding: 25px 18px 20px 18px;
+  }
+
+  .ss-header {
+    padding: 0 20px; /* Restore some padding for header */
+  }
+
+  .ss-breadcrumbs {
+     padding: 0; /* Remove mobile-specific padding */
   }
 }
 
-
+/* --- DESKTOP STYLES --- */
+@media (min-width: 1000px) {
   .ss-sidebar {
-    left: 0;
+    left: 0; /* Sidebar visible */
     width: 220px;
     max-width: 220px;
-    height: 100vh;
-    position: fixed;
+    transition: none; /* No transition on desktop */
     box-shadow: 2px 0 8px #0001;
-    transition: none;
   }
+
   .ss-overlay {
-    display: none !important;
+    display: none !important; /* Overlay not needed on desktop */
   }
+
   .ss-main {
-    margin-left: 220px;
+    margin-left: 220px; /* Make space for the sidebar */
+    padding-top: 0; /* Header is part of .ss-main flow, or handled by sticky */
   }
+  
+
   .ss-sidebar-toggle {
-    display: none !important;
+    display: none !important; /* Hide mobile toggle on desktop */
   }
-}
 
-  /* --- MOBILE FIRST: Tarjetas, Sidebar y Layout --- */
-
-.ss-cards-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin-top: 0;
-  margin-bottom: 18px;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.ss-card {
-  width: 97vw;
-  max-width: 99vw;
-  min-width: 0;
-  margin: 0 auto 14px auto;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #0002;
-  padding: 20px 8px 16px 8px;
-  flex-basis: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-
-
-
-
-.ss-overlay {
-  display: none;
-}
-
-
-
-.ss-sidebar-toggle {
-  display: flex;
-  z-index: 1301;
-}
-
-.ss-main {
-  margin-left: 0;
-}
-
-
-/* --- MOBILE FIRST: Tarjetas, Sidebar y Layout --- */
-
-.ss-cards-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin-top: 0;
-  margin-bottom: 18px;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.ss-card {
-  width: 97vw;
-  max-width: 99vw;
-  min-width: 0;
-  margin: 0 auto 14px auto;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #0002;
-  padding: 20px 8px 16px 8px;
-  flex-basis: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-
-
-
-
-.ss-overlay {
-  display: none;
-}
-
-
-
-.ss-sidebar-toggle {
-  display: flex;
-  z-index: 1301;
-}
-
-.ss-main {
-  margin-left: 0;
-}
-
-
-
-
-/* El resto de media queries y reglas se mantienen igual */
-
-  .ss-sidebar {
-    left: -220px;
-    width: 220px;
-  }
-  
-  .ss-sidebar.open {
-    left: 0;
-  }
-  
-  .ss-sidebar-toggle {
-    display: flex !important;
-    z-index: 1301;
-  }
-  
-  .ss-main {
-    margin-left: 0;
-  }
-  
-  .ss-header {
-    width: 100vw;
-    padding: 0 10px;
-  }
-  
   .ss-main-content {
-    margin-top: 0 !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding: 2em 1.5em; /* Desktop padding */
+  }
+
+  .ss-cards-row {
+    justify-content: flex-start; /* Align cards to the start for desktop */
+    /* For 3-1 layout, ensure container allows wrapping and cards have appropriate flex basis */
+    /* Example: if 4th card should be on new row and centered: */
+    /* Parent (.ss-cards-row) might need align-items: flex-start; */
+    /* The 4th card itself might need margin: 0 auto; if it's the only one on its row */
+  }
+
+  .ss-card {
+    max-width: 260px; /* Consistent max-width with tablet or specific desktop size */
+    /* flex-basis might need adjustment if 3-1 layout is strict */
   }
   
-  .ss-main-content /* --- MOBILE FIRST: Tarjetas, Sidebar y Layout --- */
+  /* Specific styling for the 3-1 card layout if needed via CSS */
+  /* This often requires knowing the number of cards or using :nth-child selectors */
+  /* For a generic approach, flex-wrap: wrap and justify-content: center on .ss-cards-row */
+  /* combined with appropriate flex-basis on .ss-card usually works well. */
+  /* If the last row must have one item centered, it might need specific targeting or JS. */
+  /* For now, relying on flex-wrap and centering from tablet, adjusting justify-content. */
+}
 
-.ss-cards-row {
+/* Form Styles (re-usable) */
+.ss-form-group {
+  margin-bottom: 1em;
+}
+
+.ss-form-group label {
+  display: block;
+  margin-bottom: 0.3em;
+  font-weight: 500;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.ss-form input[type="text"],
+.ss-form input[type="email"],
+.ss-form input[type="password"],
+.ss-form input[type="date"],
+.ss-form input[type="number"],
+.ss-form select,
+.ss-form textarea {
+  width: 100%;
+  padding: 0.7em 0.8em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-family: var(--ss-font);
+}
+
+.ss-form textarea {
+  min-height: 80px;
+}
+
+.ss-form input[type="checkbox"],
+.ss-form input[type="radio"] {
+  margin-right: 0.5em;
+}
+
+.ss-form .ss-form-actions {
+  margin-top: 1.5em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin-top: 0;
-  margin-bottom: 18px;
-  padding-left: 0;
-  padding-right: 0;
+  gap: 1em;
 }
 
-.ss-card {
-  width: 97vw;
-  max-width: 99vw;
-  min-width: 0;
-  margin: 0 auto 14px auto;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #0002;
-  padding: 20px 8px 16px 8px;
-  flex-basis: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.ss-card-form {
+    max-width: 600px; /* Limit width of forms within cards */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-
-
-.ss-overlay {
-  display: none;
+.ss-feedback {
+    padding: 0.8em 1em;
+    margin-top: 1em;
+    border-radius: 5px;
+    font-size: 0.95em;
 }
-
-.ss-sidebar-toggle {
-  display: flex;
-  z-index: 1301;
+.ss-feedback-success {
+    background-color: #e6ffed;
+    border: 1px solid #5cb85c;
+    color: #3d7a3d;
 }
-
-.ss-main {
-  margin-left: 0;
+.ss-feedback-error {
+    background-color: #fdecea;
+    border: 1px solid #d9534f;
+    color: #a94442;
 }

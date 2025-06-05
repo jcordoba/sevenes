@@ -1,0 +1,120 @@
+{
+  "systemInfo": {
+    "operatingSystem": "win32",
+    "windsurfVersion": "1.9.4",
+    "ideName": "windsurf",
+    "userName": "Franco Perdomo",
+    "userEmail": "francoperdomoc@gmail.com",
+    "teamsTier": 9,
+    "timestamp": "2025-06-03T20:03:43.705Z",
+    "installationId": "2df6fe4c-3837-489f-b032-320acd6d651d"
+  },
+  "userSettings": {
+    "openMostRecentChatConversation": false,
+    "lastSelectedModel": "MODEL_UNSPECIFIED",
+    "themePreference": "THEME_PREFERENCE_UNSPECIFIED",
+    "extensionPanelTab": "EXTENSION_PANEL_TAB_UNSPECIFIED",
+    "fontSize": "FONT_SIZE_UNSPECIFIED",
+    "autocompleteSpeed": "AUTOCOMPLETE_SPEED_UNSPECIFIED",
+    "rememberLastModelSelection": "REMEMBER_LAST_MODEL_SELECTION_UNSPECIFIED",
+    "lastSelectedModelName": "",
+    "lastSelectedCascadeModel": "MODEL_GOOGLE_GEMINI_2_5_PRO",
+    "cascadeNuxStates": [],
+    "cascadePlannerMode": "CONVERSATIONAL_PLANNER_MODE_DEFAULT",
+    "cascadeAllowedCommands": [],
+    "cascadeDeniedCommands": [],
+    "userNuxStates": [],
+    "cascadeWebSearchDisabled": false,
+    "disableAutocomplete": false,
+    "disableSupercomplete": false,
+    "disableSelectionPopup": false,
+    "disableExplainProblemInlayHint": false,
+    "disableInlayHintShortcuts": false,
+    "disableOpenCascadeOnReload": false,
+    "disableAutoOpenEditedFiles": false,
+    "disableTabToJump": false,
+    "cascadeAutoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_UNSPECIFIED",
+    "explainAndFixInCurrentConversation": false,
+    "allowCascadeAccessGitignoreFiles": false,
+    "disableCascadeAutoFixLints": false,
+    "disableCascadeBrowserPreviews": false,
+    "detectProxy": false,
+    "disableTabToImport": false,
+    "useClipboardForCompletions": false,
+    "disableHighlightAfterAccept": false,
+    "lastSelectedNewConvoTab": "",
+    "disableAutoGenerateMemories": false,
+    "enableSoundsForSpecialEvents": false,
+    "enableTabSounds": false,
+    "allowCascadeInBackground": false,
+    "tabToJump": "TAB_TO_JUMP_UNSPECIFIED",
+    "cascadeWebSearch": "CASCADE_WEB_SEARCH_TOOL_UNSPECIFIED",
+    "enableTerminalCompletion": false,
+    "lastModelOverride": "MODEL_CHAT_GPT_4_1_2025_04_14",
+    "featureUsageData": {
+      "CASCADE_CLICK_MODEL_SELECTOR": {
+        "hasUsed": true
+      }
+    },
+    "disableCascadeInBackground": false
+  },
+  "extensionLogs": [
+    "2025-06-03 13:32:06.260 [info] 2025/06/03 13:32:06 maxprocs: Leaving GOMAXPROCS=8: CPU quota undefined",
+    "2025-06-03 13:32:06.870 [info] I0603 13:32:06.869491  4772 main.go:585] Setting GOMAXPROCS to 4",
+    "2025-06-03 13:32:06.870 [info] I0603 13:32:06.870490  4772 main.go:800] Starting language server process with pid 4772",
+    "2025-06-03 13:32:06.871 [info] I0603 13:32:06.870490  4772 server.go:269] Language server will attempt to listen on host 127.0.0.1",
+    "2025-06-03 13:32:06.873 [info] I0603 13:32:06.871992  4772 server.go:276] Language server listening on random port at 64553",
+    "2025-06-03 13:32:07.218 [info] I0603 13:32:07.217733  4772 server.go:387] Created extension server client at port 64552",
+    "2025-06-03 13:32:09.969 [info] I0603 13:32:09.968393  4772 server.go:946] Local search is enabled, will index local files.",
+    "2025-06-03 13:32:09.969 [info] I0603 13:32:09.968393  4772 server.go:950] Using 2 indexer workers",
+    "2025-06-03 13:32:10.036 [info] (Windsurf) 2025-06-03 13:32:10.030 [INFO]: Language server started",
+    "2025-06-03 13:32:10.990 [info] (Windsurf) 2025-06-03 13:32:10.989 [INFO]: LS lspClient started successfully",
+    "2025-06-03 15:02:37.931 [info] 2025/06/03 15:02:37 maxprocs: Leaving GOMAXPROCS=8: CPU quota undefined",
+    "2025-06-03 15:02:39.027 [info] I0603 15:02:38.797721 27888 main.go:585] Setting GOMAXPROCS to 4",
+    "2025-06-03 15:02:39.027 [info] I0603 15:02:38.810725 27888 main.go:800] Starting language server process with pid 27888",
+    "2025-06-03 15:02:39.027 [info] I0603 15:02:38.810725 27888 server.go:269] Language server will attempt to listen on host 127.0.0.1",
+    "2025-06-03 15:02:39.027 [info] I0603 15:02:38.814536 27888 server.go:276] Language server listening on random port at 51303",
+    "2025-06-03 15:02:39.350 [info] I0603 15:02:39.349350 27888 server.go:387] Created extension server client at port 51297",
+    "2025-06-03 15:02:42.674 [info] I0603 15:02:42.672356 27888 server.go:946] Local search is enabled, will index local files.",
+    "2025-06-03 15:02:42.674 [info] I0603 15:02:42.672356 27888 server.go:950] Using 2 indexer workers",
+    "2025-06-03 15:02:42.771 [info] (Windsurf) 2025-06-03 15:02:42.763 [INFO]: Language server started",
+    "2025-06-03 15:02:44.069 [info] (Windsurf) 2025-06-03 15:02:44.068 [INFO]: LS lspClient started successfully",
+    "2025-06-03 15:03:32.709 [info] (Windsurf) 2025-06-03 15:03:32.708 [INFO]: [Cascade Manager] Opening diff zones for: "
+  ],
+  "languageServerDiagnostics": {
+    "logs": [
+      "I0603 15:02:38.797721 27888 main.go:585] Setting GOMAXPROCS to 4\n",
+      "I0603 15:02:38.810725 27888 main.go:800] Starting language server process with pid 27888\n",
+      "I0603 15:02:38.810725 27888 server.go:269] Language server will attempt to listen on host 127.0.0.1\n",
+      "I0603 15:02:38.814536 27888 server.go:276] Language server listening on random port at 51303\n",
+      "I0603 15:02:39.349350 27888 server.go:387] Created extension server client at port 51297\n",
+      "I0603 15:02:42.672356 27888 server.go:946] Local search is enabled, will index local files.\n",
+      "I0603 15:02:42.672356 27888 server.go:950] Using 2 indexer workers\n"
+    ]
+  },
+  "recentTrajectories": [
+    {
+      "cascadeId": "d3ab3d48-7e69-408b-a5d9-5e4ee85f2281",
+      "trajectoryId": "36e0ca61-c451-43be-9e07-87731e5a7d26",
+      "summary": "WordPress Member Management Enhancement",
+      "lastStepIndex": 860,
+      "lastModifiedTime": "2025-06-02T17:19:39.028Z"
+    },
+    {
+      "cascadeId": "49d9503c-49e3-41c0-9ef7-0dc6438ae5d5",
+      "trajectoryId": "55bfafc2-fddd-4b4c-94f1-1a966f48e10f",
+      "summary": "Modernizing Dashboard User Interface",
+      "lastStepIndex": 1558,
+      "lastModifiedTime": "2025-05-31T03:32:20.766Z"
+    }
+  ],
+  "fields": {
+    "cascadeId": "d3ab3d48-7e69-408b-a5d9-5e4ee85f2281",
+    "currentLatestStepIndex": 860,
+    "trajectoryId": "36e0ca61-c451-43be-9e07-87731e5a7d26",
+    "consoleLogs": [
+      "[LOG] 2025-6-3 15:2:47.864 Sentry initialized",
+      "[ERROR] 2025-6-3 15:2:47.973 Failed to fetch knowledge base items ConnectError: [permission_denied] api server wire error: Not allowed"
+    ]
+  }
+}

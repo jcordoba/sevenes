@@ -45,13 +45,13 @@ jQuery(function($){
 
   // Buscar
   $('#ss-member-search-form').on('submit', function(e){
-    e.preventDefault();
-    loadMembers($('#ss-member-search').val());
+    // e.preventDefault(); // Allow default form submission for server-side search
+    // loadMembers($('#ss-member-search').val()); // Server-side will handle search
   });
 
   // Nuevo
   $('#ss-member-add').on('click', function(){
-    loadMemberForm();
+    window.location.href = '/sevenes-dashboard/members/add/';
   });
 
   // Editar/Baja delegados
@@ -89,5 +89,5 @@ jQuery(function($){
   });
 
   // Inicial
-  loadMembers();
+  // loadMembers(); // Server-side PHP will render the initial list
 });

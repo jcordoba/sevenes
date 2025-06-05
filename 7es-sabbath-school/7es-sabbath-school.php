@@ -55,7 +55,7 @@ function sevenes_enqueue_dashboard_assets() {
 
     // Definir las rutas que usan el layout.css principal
     // Estas deben coincidir con los 'case' en el filtro 'template_include' que cargan plantillas usando el layout general
-    $dashboard_routes = ['dashboard', 'members', 'classes']; 
+    $dashboard_routes = ['dashboard', 'members', 'members_add', 'members_edit', 'classes']; 
 
     if ($sevenes_route && in_array($sevenes_route, $dashboard_routes)) {
         $layout_css_path = SABBATH_SCHOOL_PLUGIN_PATH . 'assets/css/layout.css';
@@ -99,7 +99,7 @@ add_action('wp_enqueue_scripts', 'sevenes_enqueue_dashboard_assets');
 // Ocultar la barra de administración en las páginas del dashboard personalizado
 function sevenes_hide_admin_bar_on_dashboard($show) {
     $sevenes_route = get_query_var('sevenes_route');
-    $dashboard_routes = ['dashboard', 'members', 'classes', 'attendance', 'reports']; // Asegúrate de incluir todas las rutas de tu dashboard
+    $dashboard_routes = ['dashboard', 'members', 'members_add', 'members_edit', 'classes', 'attendance', 'reports']; // Asegúrate de incluir todas las rutas de tu dashboard
 
     if ($sevenes_route && in_array($sevenes_route, $dashboard_routes)) {
         return false; // Oculta la barra de administración
@@ -124,6 +124,8 @@ function add_sevenes_rewrite_rules() {
     add_rewrite_rule('^sevenes-logout/?$', 'index.php?sevenes_route=logout', 'top');
     add_rewrite_rule('^sevenes-dashboard/?$', 'index.php?sevenes_route=dashboard', 'top');
     add_rewrite_rule('^sevenes-dashboard/members/?$', 'index.php?sevenes_route=members', 'top');
+    add_rewrite_rule('^sevenes-dashboard/members/add/?$', 'index.php?sevenes_route=members_add', 'top');
+    add_rewrite_rule('^sevenes-dashboard/members/edit/?$', 'index.php?sevenes_route=members_edit', 'top'); // Nueva ruta para editar miembro
     add_rewrite_rule('^sevenes-dashboard/classes/?$', 'index.php?sevenes_route=classes', 'top');
 }
 add_action('init', 'add_sevenes_rewrite_rules');
@@ -145,6 +147,10 @@ add_filter('template_include', function($template){
             include SABBATH_SCHOOL_PLUGIN_PATH.'templates/dashboard.php'; exit;
         case 'members':
             include SABBATH_SCHOOL_PLUGIN_PATH.'templates/members.php'; exit;
+        case 'members_add':
+            include SABBATH_SCHOOL_PLUGIN_PATH.'templates/members-add.php'; exit;
+        case 'members_edit': // Nueva plantilla para editar miembro
+            include SABBATH_SCHOOL_PLUGIN_PATH.'templates/members-edit.php'; exit;
         case 'classes':
             include SABBATH_SCHOOL_PLUGIN_PATH.'templates/classes.php'; exit;
     }

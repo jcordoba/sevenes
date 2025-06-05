@@ -36,11 +36,16 @@ class SabbathSchool_Install {
             email VARCHAR(100) NULL,
             class_id INT UNSIGNED NULL,
             role ENUM('alumno','maestro','practicante','asistente','visitante') NOT NULL DEFAULT 'alumno',
-            status_id INT NOT NULL DEFAULT 1,
+            marital_status VARCHAR(50) NULL,
+            address VARCHAR(255) NULL,
+            baptism_date DATE NULL,
+            status_id INT NOT NULL DEFAULT 1, -- Para estados más detallados (transferido, etc.)
+            is_active TINYINT(1) NOT NULL DEFAULT 1, -- Para activo/inactivo simple
             is_new_convert TINYINT(1) NOT NULL DEFAULT 0,
             conversion_year YEAR NULL,
-            joined_at DATE NULL,
+            joined_at DATE NULL, -- Fecha en que se unió a la iglesia/escuela sabática
             ministry_unit_id INT UNSIGNED NULL,
+            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
         ) $charset_collate;";
@@ -149,6 +154,21 @@ class SabbathSchool_Install {
         dbDelta($sql_missionary_reports);
         dbDelta($sql_evaluations);
         dbDelta($sql_status_history);
+
+        // Tabla de registro de auditoría para miembros
+        $sql_member_audit_log = "CREATE TABLE {$prefix}sapp_member_audit_log (
+            id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+            member_id INT UNSIGNED NOT NULL,
+            user_id BIGINT UNSIGNED NOT NULL,
+            changed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            field_name VARCHAR(100) NOT NULL,
+            old_value TEXT NULL,
+            new_value TEXT NULL,
+            PRIMARY KEY (id),
+            KEY member_id (member_id),
+            KEY user_id (user_id)
+        ) $charset_collate;";
+        dbDelta($sql_member_audit_log);
     }
 
     /**

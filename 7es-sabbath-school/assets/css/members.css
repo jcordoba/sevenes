@@ -1,4 +1,90 @@
 /* Mobile-first: una sola columna, botones grandes, sin scroll horizontal */
+
+/* Styles for the members table */
+.ss-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    font-size: 0.9em; /* Slightly smaller font for table data */
+}
+
+.ss-table th,
+.ss-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.ss-table th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+    font-weight: 600;
+    color: #333;
+}
+
+.ss-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+.ss-table tr:hover {
+    background-color: #f1f1f1; /* Highlight on hover */
+}
+
+.ss-btn-action {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.ss-btn-edit {
+    background-color: #2d72d9; /* Blue */
+    color: white;
+}
+
+.ss-btn-edit:hover {
+    background-color: #255dab;
+}
+
+.ss-btn-deactivate {
+    background-color: #c0392b; /* Red */
+    color: white;
+}
+
+.ss-btn-deactivate:hover {
+    background-color: #a53125;
+}
+
+/* Pagination Styles */
+.ss-pagination {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.ss-pagination a,
+.ss-pagination span.current {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #2d72d9;
+    border-radius: 4px;
+}
+
+.ss-pagination span.current {
+    background-color: #2d72d9;
+    color: white;
+    border-color: #2d72d9;
+}
+
+.ss-pagination a:hover {
+    background-color: #f1f1f1;
+    border-color: #ccc;
+}
 .ss-members-wrapper { max-width: 480px; margin: 0 auto; padding: 1em; }
 .ss-form { display: flex; flex-direction: column; gap: 1em; }
 .ss-form-inline { flex-direction: row; gap: 0.5em; }
